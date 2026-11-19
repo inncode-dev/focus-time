@@ -1,0 +1,12 @@
+import { useEffect } from 'react'
+
+export function useDocumentTitle(title: string): void {
+  useEffect(() => {
+    const previous = document.title
+    document.title = title
+    // Cleanup runs before the next effect and on unmount: restore what was there.
+    return () => {
+      document.title = previous
+    }
+  }, [title])
+}
